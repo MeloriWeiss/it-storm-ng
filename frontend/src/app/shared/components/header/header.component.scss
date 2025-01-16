@@ -1,0 +1,69 @@
+@import "../../../../assets/styles/variables";
+
+.container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+
+.header-menu-item-link {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: $dark-blue-color;
+  padding-bottom: 1px;
+  transition: all .3s ease;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    border-bottom: 2px solid $dark-blue-color;
+  }
+
+  &.active {
+    color: $blue-color;
+
+    &:hover {
+      border-bottom-color: $blue-color;
+    }
+  }
+}
+
+.header-phone a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: $blue-color;
+}
+
+.header-auth-actions-container {
+  width: 84px;
+  height: 24px;
+  position: relative;
+}
+
+.header-auth-actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  color: $dark-blue-color;
+}
+
+.header-auth-action {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  a {
+    color: $dark-blue-color;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="login">
+  <div class="container">
+    <div class="login-form">
+      <h2 class="login-title title-lora-36">Войти в личный кабинет</h2>
+      <form class="login-form" [formGroup]="loginForm">
+        <input class="input" type="email" placeholder="Электронная почта"
+               formControlName="email"
+               [style]="{'border-color': email?.invalid && (email?.touched || email?.dirty) && email?.errors?.['email'] ? 'red' : null}">
+        <div class="input-error" *ngIf="email?.invalid &&
+               (email?.touched || email?.dirty) && email?.errors?.['email']">
+          Введите корректный почтовый адрес
+        </div>
+        <div class="password-input">
+          <input class="input" type="password" placeholder="Пароль" [showPassword]="showPassword"
+                 formControlName="password"
+                 [style]="{'border-color': password?.invalid && (password?.touched || password?.dirty) ? 'red' : null}">
+          <div class="password-input-lock" (click)="toggleShowPassword()"></div>
+        </div>
+        <div class="input-error" *ngIf="password?.invalid &&
+               (password?.touched || password?.dirty)">
+          Это поле обязательно
+        </div>
+        <div class="login-policy-agree">
+          <input type="checkbox" id="policy-agree" formControlName="rememberMe">
+          <label for="policy-agree" class="checkbox">
+            Запомнить меня
+          </label>
+        </div>
+        <button class="button" [disabled]="loginForm.invalid ? true : null" (click)="login()">Войти</button>
+      </form>
+      <div class="change-user-page">
+        Нет аккаунта?
+        <a routerLink="/signup">Пройдите регистрацию</a>
+      </div>
+    </div>
+    <div class="login-image"></div>
+  </div>
+</div>

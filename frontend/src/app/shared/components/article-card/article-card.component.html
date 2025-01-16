@@ -1,0 +1,16 @@
+<div class="article-card" *ngIf="article">
+  <div class="article-card-image"
+       style="background-image: url({{ article.image | serverImageUrl }})"></div>
+  <div class="article-card-category">
+    {{ article.category }}
+  </div>
+  <div class="article-card-text">
+    <div class="article-card-title">
+      {{ article.title }}
+    </div>
+    <p class="article-card-info">
+      {{ article.description }}
+    </p>
+  </div>
+  <a routerLink="/blog/{{ article.url }}" class="article-card-to-details">Читать дальше</a>
+</div>

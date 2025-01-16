@@ -1,0 +1,75 @@
+@import "../../../../assets/styles/variables";
+
+.footer {
+  background-color: $light-blue-color;
+  padding-top: 40px;
+  padding-bottom: 54px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.footer-menu-item-link {
+  font-size: 16px;
+  color: $dark-blue-color;
+  padding-bottom: 1px;
+  transition: all .3s ease;
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    border-bottom: 1px solid $dark-blue-color;
+  }
+}
+
+.footer-info {
+  display: flex;
+  align-items: baseline;
+  gap: 60px;
+}
+
+.footer-info-title {
+  font-weight: 500;
+  font-size: 16px;
+  color: $blue-color;
+  margin-bottom: 10px;
+}
+
+.footer-info-text {
+  font-size: 16px;
+  color: $dark-blue-color;
+  line-height: 130%;
+  max-width: 253px;
+
+  a {
+    color: $dark-blue-color;
+  }
+}
+
+.footer-info-button .button {
+  margin-top: 10px;
+  width: 153px;
+  height: 36px;
+}
+
+.footer-info-socials {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-rights {
+  font-size: 16px;
+  color: $blue-color;
+}

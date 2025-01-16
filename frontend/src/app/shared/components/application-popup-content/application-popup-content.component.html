@@ -1,0 +1,57 @@
+<div class="popup">
+  <div class="close-popup" (click)="closePopup()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1.93562" y1="2.64999" x2="13.9564" y2="14.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+      <line x1="13.9236" y1="2.62978" x2="1.90277" y2="14.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="popup-content">
+    <div class="popup-content-form" *ngIf="!applicationSent">
+      <h5 class="popup-title title-lora-38">{{ title }}</h5>
+      <form class="service-form" [formGroup]="applicationForm" (ngSubmit)="sendApplication($event)">
+        <mat-select class="input" *ngIf="isServiceType"
+                    formControlName="service"
+                    [style]="{'border-color': service?.invalid &&
+               (service?.touched || service?.dirty) ? 'red' : null}">
+          <mat-option *ngFor="let option of applicationServiceOptions" [value]="option.value">
+            {{ option.title }}
+          </mat-option>
+        </mat-select>
+        <div class="input-error" *ngIf="service?.invalid &&
+               (service?.touched || service?.dirty) && service?.errors?.['pattern']">
+          Выберите услугу
+        </div>
+        <input class="input" placeholder="Ваше имя"
+               formControlName="name"
+               [style]="{'border-color': name?.invalid &&
+               (name?.touched || name?.dirty) ? 'red' : null}">
+        <div class="input-error" *ngIf="name?.invalid &&
+               (name?.touched || name?.dirty) && name?.errors?.['pattern']">
+          Введите имя корректно
+        </div>
+        <div class="input-error" *ngIf="name?.invalid &&
+               (name?.touched || name?.dirty) && name?.errors?.['required']">
+          Это поле обязательно
+        </div>
+        <input class="input" type="tel" placeholder="Ваш номер телефона" #phoneInput
+               formControlName="phone"
+               [style]="{'border-color': phone?.invalid &&
+               (phone?.touched || phone?.dirty) ? 'red' : null}">
+        <div class="input-error" *ngIf="phone?.invalid &&
+               (phone?.touched || phone?.dirty) && phone?.errors?.['pattern']">
+          Введите телефон корректно
+        </div>
+        <div class="input-error" *ngIf="phone?.invalid &&
+               (phone?.touched || phone?.dirty) && phone?.errors?.['required']">
+          Это поле обязательно
+        </div>
+        <button class="button" [disabled]="applicationForm.invalid">{{ buttonText }}</button>
+      </form>
+    </div>
+    <div class="popup-content-gratitude" *ngIf="applicationSent">
+      <h5 class="popup-title title-lora-38">Спасибо за вашу заявку!</h5>
+      <p class="popup-gratitude-text">Мы свяжемся с вами при первой же возможности.</p>
+      <button class="button" (click)="closePopup()">Окей</button>
+    </div>
+  </div>
+</div>

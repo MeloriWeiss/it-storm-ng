@@ -1,0 +1,69 @@
+@import "../../../../assets/styles/variables";
+
+.article-card {
+  border-radius: 5px;
+  width: 290px;
+  position: relative;
+}
+
+.article-card-image {
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+  width: 291px;
+  height: 291px;
+}
+
+.article-card-category {
+  position: absolute;
+  top: 10px;
+  right: 9px;
+  background-color: #FFF;
+  border-radius: 5px;
+  padding: 10px 18px;
+  font-size: 11px;
+  color: $blue-color;
+}
+
+.article-card-text {
+  margin-top: 15px;
+  height: 224px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.article-card-title {
+  line-height: 130%;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  color: $blue-color;
+}
+
+.article-card-info {
+  font-size: 14px;
+  line-height: 130%;
+  color: $dark-blue-color;
+
+  //display: -webkit-box;
+  //-webkit-box-orient: vertical;
+  //-webkit-line-clamp: 6;
+  //overflow: hidden;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, #FFF 70%);
+  }
+}
+
+.article-card-to-details {
+  font-size: 16px;
+  text-decoration: underline;
+  color: $blue-color;
+}

@@ -1,0 +1,71 @@
+@import "../../../../assets/styles/variables";
+
+.signup {
+  padding-top: 123px;
+  padding-bottom: 120px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.signup-form {
+  max-width: 422px;
+
+  .signup-policy-agree {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 130%;
+    color: $dark-blue-color;
+
+    input {
+      position: relative;
+      top: 2px;
+    }
+
+    a {
+      text-decoration: underline;
+      color: $blue-color;
+    }
+  }
+
+  .button {
+    font-size: 16px;
+    width: 422px;
+    height: 51px;
+  }
+
+  .input {
+    margin-bottom: 5px;
+  }
+
+  .checkbox {
+    display: block;
+  }
+}
+
+.change-user-page {
+  margin-top: 10px;
+  font-size: 14px;
+  color: $dark-blue-color;
+
+  a {
+    margin-left: 7px;
+    color: $blue-color;
+  }
+}
+
+.signup-image {
+  width: 607px;
+  height: 390px;
+  background-image: url('../../../../assets/images/user/signup.png');
+  background-position: center;
+  background-size: cover;
+  margin-top: 3px;
+}

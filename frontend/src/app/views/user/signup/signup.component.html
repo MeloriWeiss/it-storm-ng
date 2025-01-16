@@ -1,0 +1,64 @@
+<div class="signup">
+  <div class="container">
+    <div class="signup-form">
+      <h2 class="signup-title title-lora-36">Регистрация на сайте</h2>
+      <form class="signup-form" [formGroup]="signupForm">
+        <input class="input" type="text" placeholder="Ваше имя"
+               formControlName="name"
+               [style]="{'border-color': name?.invalid &&
+               (name?.touched || name?.dirty) ? 'red' : null}">
+        <div class="input-error" *ngIf="name?.invalid &&
+               (name?.touched || name?.dirty) && name?.errors?.['pattern']">
+          Введите имя корректно
+        </div>
+        <div class="input-error" *ngIf="name?.invalid &&
+               (name?.touched || name?.dirty) && name?.errors?.['required']">
+          Это поле обязательно
+        </div>
+        <input class="input" type="email" placeholder="Электронная почта"
+               formControlName="email"
+               [style]="{'border-color': email?.invalid &&
+               (email?.touched || email?.dirty) ? 'red' : null}">
+        <div class="input-error" *ngIf="email?.invalid &&
+               (email?.touched || email?.dirty) && email?.errors?.['email']">
+          Введите корректный почтовый адрес
+        </div>
+        <div class="input-error" *ngIf="email?.invalid &&
+               (email?.touched || email?.dirty) && email?.errors?.['required']">
+          Это поле обязательно
+        </div>
+        <div class="password-input">
+          <input class="input" type="password" placeholder="Пароль" [showPassword]="showPassword"
+                 formControlName="password"
+                 [style]="{'border-color': password?.invalid &&
+               (password?.touched || password?.dirty) ? 'red' : null}">
+          <div class="password-input-lock" (click)="toggleShowPassword()"></div>
+        </div>
+        <div class="input-error" *ngIf="password?.invalid &&
+               (password?.touched || password?.dirty) && password?.errors?.['pattern']">
+          Пароль должен быть не менее 8
+          символов и содержать хотя бы одну заглавную букву и одну цифру
+        </div>
+        <div class="input-error" *ngIf="name?.invalid &&
+               (password?.touched || password?.dirty) && password?.errors?.['required']">
+          Это поле обязательно
+        </div>
+        <div class="signup-policy-agree">
+          <input type="checkbox" id="policy-agree" formControlName="agree">
+          <label for="policy-agree" class="checkbox">
+            Я принимаю <a routerLink="/rights" fragment="conditions" target="_blank">условия пользовательского
+            соглашения</a> и даю <a routerLink="/rights" fragment="agreement" target="_blank">согласие на обработку
+            персональных данных</a>.
+          </label>
+        </div>
+        <button class="button" [disabled]="signupForm.invalid ? true : null" (click)="signup()">Зарегистрироваться
+        </button>
+      </form>
+      <div class="change-user-page">
+        Уже есть аккаунт?
+        <a routerLink="/login">Войдите</a>
+      </div>
+    </div>
+    <div class="signup-image"></div>
+  </div>
+</div>

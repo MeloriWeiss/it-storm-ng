@@ -1,0 +1,37 @@
+@import "../../../../assets/styles/variables";
+
+.not-found {
+  margin-top: 130px;
+  margin-bottom: 150px;
+  min-height: 3cd 0dvh;
+}
+
+.not-found-content {
+  width: 800px;
+  margin: 0 auto;
+  font-weight: 600;
+}
+
+.not-found-status-code {
+  font-size: 60px;
+  color: $blue-color;
+}
+
+.not-found-title {
+  font-size: 50px;
+  color: darkgray;
+  margin-bottom: 40px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  height: 54px;
+  width: 250px;
+
+  span {
+    height: 25px;
+  }
+}

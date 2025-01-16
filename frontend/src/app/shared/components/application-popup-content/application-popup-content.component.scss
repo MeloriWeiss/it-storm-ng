@@ -1,0 +1,60 @@
+@import "../../../../assets/styles/variables";
+
+.popup {
+  width: 727px;
+  height: 489px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-popup {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.popup-content-form {
+  width: 422px;
+}
+
+.popup-content-gratitude {
+  width: 443px;
+  text-align: center;
+}
+
+.popup-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popup-gratitude-text {
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 130%;
+  color: #1E1A2B;
+  margin-bottom: 40px;
+}
+
+.input {
+  margin-bottom: 5px;
+}
+
+.service-form {
+  .button {
+    height: 51px;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+.popup-content-gratitude {
+  .button {
+
+  }
+}
