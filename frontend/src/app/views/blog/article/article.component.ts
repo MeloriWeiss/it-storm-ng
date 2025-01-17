@@ -13,6 +13,7 @@ import {CommentActionsType} from "../../../../types/comment-actions.type";
 import {AppliedCommentActionType} from "../../../../types/applied-comment-action.type";
 import {AppliedActionsUtil} from "../../../shared/utils/applied-actions.util";
 import {CommentService} from "../services/comment.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-article',
@@ -31,6 +32,7 @@ export class ArticleComponent implements OnInit {
   appliedCommentActions: AppliedCommentActionType[] = [];
   isLogged: boolean = false;
   commentActions = CommentActionsType;
+  environmentUrl: string = environment.url;
 
   constructor(private articleService: ArticleService,
               private commentService: CommentService,

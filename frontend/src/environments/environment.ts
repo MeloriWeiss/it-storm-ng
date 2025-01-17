@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  url: 'http://localhost:4200/',
   api: 'http://localhost:3000/api/',
   serverStaticPath: 'http://localhost:3000/images/'
 };
