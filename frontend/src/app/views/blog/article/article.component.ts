@@ -54,7 +54,7 @@ export class ArticleComponent implements OnInit {
               if (article.commentsCount) {
                 this.commentsCount = article.commentsCount;
               }
-              if (article.comments.length) {
+              if (article.comments && article.comments.length) {
                 this.comments = article.comments;
 
                 this.commentService.getArticleCommentActions(article.id)
@@ -66,18 +66,6 @@ export class ArticleComponent implements OnInit {
                       this.appliedCommentActions = appliedActions as AppliedCommentActionType[];
 
                       AppliedActionsUtil.setMyReactions(this.appliedCommentActions, this.comments);
-
-                      this.appliedCommentActions.forEach(action => {
-                        const foundComment = this.comments.find(comment => action.comment === comment.id);
-                        if (foundComment) {
-                          if (action.action === CommentActionsType.like) {
-                            foundComment.likedFromMe = true;
-                          }
-                          if (action.action === CommentActionsType.dislike) {
-                            foundComment.dislikedFromMe = true;
-                          }
-                        }
-                      });
                     }
                   });
               }
@@ -166,49 +154,53 @@ export class ArticleComponent implements OnInit {
   }
 
   applyCommentAction(action: CommentActionsType, comment: CommentType) {
-    this.commentService.applyCommentAction(action, comment.id)
-      .subscribe({
-        next: (result: DefaultResponseType) => {
-          if (result.error) {
-            this._snackBar.open(result.message);
-            throw new Error(result.message);
-          }
-          if (action === CommentActionsType.like || action === CommentActionsType.dislike) {
-            this._snackBar.open('Ваш голос учтён');
+    if (this.isLogged) {
+      this.commentService.applyCommentAction(action, comment.id)
+        .subscribe({
+          next: (result: DefaultResponseType) => {
+            if (result.error) {
+              this._snackBar.open(result.message);
+              throw new Error(result.message);
+            }
+            if (action === CommentActionsType.like || action === CommentActionsType.dislike) {
+              this._snackBar.open('Ваш голос учтён');
 
-            if (action === CommentActionsType.like) {
-              if (comment.dislikedFromMe) {
-                comment.dislikedFromMe = false;
-                comment.dislikesCount--;
+              if (action === CommentActionsType.like) {
+                if (comment.dislikedFromMe) {
+                  comment.dislikedFromMe = false;
+                  comment.dislikesCount--;
+                }
+                if (comment.likedFromMe) {
+                  comment.likesCount--;
+                } else {
+                  comment.likesCount++;
+                }
+                comment.likedFromMe = !comment.likedFromMe;
               }
-              if (comment.likedFromMe) {
-                comment.likesCount--;
-              } else {
-                comment.likesCount++;
+              if (action === CommentActionsType.dislike) {
+                if (comment.likedFromMe) {
+                  comment.likedFromMe = false;
+                  comment.likesCount--;
+                }
+                if (comment.dislikedFromMe) {
+                  comment.dislikesCount--;
+                } else {
+                  comment.dislikesCount++;
+                }
+                comment.dislikedFromMe = !comment.dislikedFromMe;
               }
-              comment.likedFromMe = !comment.likedFromMe;
             }
-            if (action === CommentActionsType.dislike) {
-              if (comment.likedFromMe) {
-                comment.likedFromMe = false;
-                comment.likesCount--;
-              }
-              if (comment.dislikedFromMe) {
-                comment.dislikesCount--;
-              } else {
-                comment.dislikesCount++;
-              }
-              comment.dislikedFromMe = !comment.dislikedFromMe;
+            if (action === CommentActionsType.violate) {
+              this._snackBar.open('Жалоба отправлена');
             }
+          },
+          error: (error: HttpErrorResponse) => {
+            this._snackBar.open('Жалоба уже отправлена');
+            throw new Error(error.error.message);
           }
-          if (action === CommentActionsType.violate) {
-            this._snackBar.open('Жалоба отправлена');
-          }
-        },
-        error: (error: HttpErrorResponse) => {
-          this._snackBar.open('Жалоба уже отправлена');
-          throw new Error(error.error.message);
-        }
-      });
+        });
+    } else {
+      this._snackBar.open('Войдите или зарегистрируйтесь');
+    }
   }
 }
